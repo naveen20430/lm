@@ -16,8 +16,9 @@
               <div class="col-lg-12">
                 <h4 class="mb-3 header-title"><?php echo get_phrase('school_add'); ?></h4>
 
-                <form class="required-form" action="<?php echo site_url('admin/schoollist/add'); ?>" method="post" enctype="multipart/form-data">
+                <form class="required-form" action="<?php echo site_url('admin/school/add'); ?>" method="post" enctype="multipart/form-data">
                     <div class="form-group">
+                        <?php  var_dump($school); ?>
                         <label for="code"><?php echo get_phrase('category_code'); ?></label>
                         <input type="text" class="form-control" id="code" name = "code" value="<?php echo substr(md5(rand(0, 1000000)), 0, 10); ?>" readonly>
                     </div>
@@ -25,6 +26,38 @@
                     <div class="form-group">
                         <label for="name"><?php echo get_phrase('school name'); ?><span class="required">*</span></label>
                         <input type="text" class="form-control" id="name" name = "name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="name"><?php echo get_phrase('category_title'); ?><span class="required">*</span></label>
+                        <input type="text" class="form-control" id="name" name = "name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="parent"><?php echo get_phrase('parent'); ?></label>
+                        <select class="form-control select2" data-toggle="select2" name="parent" id="parent" onchange="checkCategoryType(this.value)">
+                          <option value="0"><?php echo get_phrase('none'); ?></option>
+                          <?php foreach ($school as $schoollist): ?>
+                              <?php if ($schoollist['parent'] == 0): ?>
+                                  <option value="<?php echo $schoollist['id']; ?>"><?php echo$schoollist['name']; ?></option>
+                              <?php endif; ?>
+                          <?php endforeach; ?>
+                        </select>
+                    </div>
+
+                    <div class="form-group" id = "icon-picker-area">
+                        <label for="font_awesome_class"><?php echo get_phrase('icon_picker'); ?></label>
+                        <input type="text" id ="font_awesome_class" name="font_awesome_class" class="form-control icon-picker" autocomplete="off">
+                    </div>
+
+                    <div class="form-group" id = "thumbnail-picker-area">
+                        <label> <?php echo get_phrase('category_thumbnail'); ?> <small>(<?php echo get_phrase('the_image_size_should_be'); ?>: 400 X 255)</small> </label>
+                        <div class="input-group">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="category_thumbnail" name="category_thumbnail" accept="image/*" onchange="changeTitleOfImageUploader(this)">
+                                <label class="custom-file-label" for="category_thumbnail"><?php echo get_phrase('choose_thumbnail'); ?></label>
+                            </div>
+                        </div>
                     </div>
 
                     

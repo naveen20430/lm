@@ -35,6 +35,7 @@ class User_model extends CI_Model {
         if ($validity == false) {
             $this->session->set_flashdata('error_message', get_phrase('email_duplication'));
         }else {
+            
             $data['first_name'] = html_escape($this->input->post('first_name'));
             $data['last_name'] = html_escape($this->input->post('last_name'));
             $data['email'] = html_escape($this->input->post('email'));
@@ -62,9 +63,15 @@ class User_model extends CI_Model {
             );
             array_push($stripe_info, $stripe_keys);
             $data['stripe_keys'] = json_encode($stripe_info);
+             $data['school'] = html_escape($this->input->post('school'));
+             $data['mobile'] = html_escape($this->input->post('mobile'));
+            $data['address'] = html_escape($this->input->post('address'));
+             $data['gender'] = html_escape($this->input->post('gender'));
+             $data['bday'] = html_escape($this->input->post('bday'));
+            echo $this->db->insert('users', $data);
 
-            $this->db->insert('users', $data);
             $user_id = $this->db->insert_id();
+
             $this->upload_user_image($user_id);
             $this->session->set_flashdata('flash_message', get_phrase('user_added_successfully'));
         }
@@ -122,7 +129,11 @@ class User_model extends CI_Model {
             );
             array_push($stripe_info, $stripe_keys);
             $data['stripe_keys'] = json_encode($stripe_info);
-
+            $data['school'] = html_escape($this->input->post('school'));
+             $data['mobile'] = html_escape($this->input->post('mobile'));
+            $data['address'] = html_escape($this->input->post('address'));
+             $data['gender'] = html_escape($this->input->post('gender'));
+             $data['bday'] = html_escape($this->input->post('bday'));
             $this->db->where('id', $user_id);
             $this->db->update('users', $data);
             $this->upload_user_image($user_id);

@@ -74,7 +74,7 @@ class Home extends CI_Controller {
         }
 
         // Get the selected language
-         print_r($_GET);
+         
         if (isset($_GET['language']) && !empty($_GET['language'])) {
             $selected_language = $_GET['language'];
             echo  $selected_language;

@@ -1,10 +1,6 @@
 <div class="main-nav-wrap">
   <div class="mobile-overlay"></div>
-<select onchange="javascript:window.location.href='<?php echo base_url(); ?>LanguageSwitcher/switchLang/'+this.value;">
-    <option value="english" <?php if($this->session->userdata('site_lang') == 'english') echo 'selected="selected"'; ?>>English</option>
-    <option value="hindi" <?php if($this->session->userdata('site_lang') == 'french') echo 'selected="selected"'; ?>>Hindi</option>
-    
-</select>
+
 <p><?php echo $this->lang->line('welcome_message'); ?></p>
   <ul class="mobile-main-nav">
     <div class="mobile-menu-helper-top"></div>

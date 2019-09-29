@@ -58,6 +58,39 @@
                                         <textarea class="form-control author-biography-editor" name = "biography" id="Biography"><?php echo $user_details['biography']; ?></textarea>
                                     </div>
                                 </div>
+                                 <div class="form-group row mb-3">
+                                            <label class="col-md-3 col-form-label" for="linkedin_link"><?php echo get_phrase('school'); ?></label>
+                                            <div class="col-md-9">
+                                                <textarea name="school" id = "school" class="form-control"><?php echo $user_details['school']; ?></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row mb-3">
+                                            <label class="col-md-3 col-form-label" for="linkedin_link"><?php echo get_phrase('mobile'); ?></label>
+                                            <div class="col-md-9">
+                                                <textarea name="mobile" id = "mobile" class="form-control"><?php echo $user_details['mobile']; ?></textarea>
+                                            </div>
+                                        </div>
+
+                                         <div class="form-group row mb-3">
+                                            <label class="col-md-3 col-form-label" for="linkedin_link"><?php echo get_phrase('address'); ?></label>
+                                            <div class="col-md-9">
+                                                <textarea name="address" id = "address" class="form-control"><?php echo $user_details['address']; ?></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row mb-3">
+                                            <label class="col-md-3 col-form-label" for="linkedin_link"><?php echo get_phrase('Gender'); ?></label>
+                                            <div class="col-md-9">
+                                                <textarea name="gender" id = "gender" class="form-control"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row mb-3">
+                                            <label class="col-md-3 col-form-label" for="linkedin_link"><?php echo get_phrase('birthday'); ?></label>
+                                            <div class="col-md-9">
+                                               <input type="date" name="bday">
+                                            </div>
+                                        </div>
+
+
                                 <div class="link-group">
                                     <div class="form-group">
                                         <input type="text" class="form-control" maxlength="60" name = "twitter_link" placeholder="<?php echo get_phrase('twitter_link'); ?>" value="<?php echo $social_links['twitter']; ?>">

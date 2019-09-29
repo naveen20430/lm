@@ -22,30 +22,58 @@ class Crud_model extends CI_Model {
         if ($param1 != "") {
             $this->db->where('id', $param1);
         }
-        //$this->db->where('parent', 0);
-        return $this->db->get('school');
+       // $this->db->where('parent', 0);
+        return $this->db->get('schoollist');
     }
 
     public function get_category_details_by_id($id) {
         return $this->db->get_where('category', array('id' => $id));
     }
+    public function get_school_details_by_id($id) {
+        return $this->db->get_where('schoollist', array('id' => $id));
+    }
+
 
     public function get_category_id($slug = "") {
         $category_details = $this->db->get_where('category', array('slug' => $slug))->row_array();
         return $category_details['id'];
     }
+      public function get_school_id($slug = "") {
+        $school_details = $this->db->get_where('schoollist', array('slug' => $slug))->row_array();
+        return $school_details['id'];
+    }
+     
+     
+
      public function add_school() {
-        
-         
-      
-          $data['code']   = html_escape($this->input->post('code'));
+        $data['code']   = html_escape($this->input->post('code'));
         $data['name']   = html_escape($this->input->post('name'));
-        
+        $data['parent'] = html_escape($this->input->post('parent'));
+        $data['slug']   = slugify(html_escape($this->input->post('name')));
+        if ($this->input->post('parent') == 0) {
+            // Font awesome class adding
+            if ($_POST['font_awesome_class'] != "") {
+                $data['font_awesome_class'] = html_escape($this->input->post('font_awesome_class'));
+            }else {
+                $data['font_awesome_class'] = 'fas fa-chess';
+            }
+
+            // category thumbnail adding
+            if (!file_exists('uploads/thumbnails/category_thumbnails')) {
+                mkdir('uploads/thumbnails/category_thumbnails', 0777, true);
+            }
+            if ($_FILES['category_thumbnail']['name'] == "") {
+                $data['thumbnail'] = 'category-thumbnail.png';
+            }else {
+                $data['thumbnail'] = md5(rand(10000000, 20000000)).'.jpg';
+                move_uploaded_file($_FILES['category_thumbnail']['tmp_name'], 'uploads/thumbnails/category_thumbnails/'.$data['thumbnail']);
+            }
+        }
         $data['date_added'] = strtotime(date('D, d-M-Y'));
          
-        $this->db->insert('school', $data);
-          
-         
+        $this->db->insert('schoollist', $data);
+        print_r($data);
+
      }
 
     public function add_category() {
@@ -107,6 +135,10 @@ class Crud_model extends CI_Model {
     }
 
     public function get_sub_categories($parent_id = "") {
+        return $this->db->get_where('category', array('parent' => $parent_id))->result_array();
+    }
+
+ public function get_sub_school($parent_id = "") {
         return $this->db->get_where('category', array('parent' => $parent_id))->result_array();
     }
 

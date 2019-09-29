@@ -39,11 +39,11 @@ class Admin extends CI_Controller {
     $page_data['page_name'] = 'blank_template';
     $this->load->view('backend/index.php', $page_data);
   }
-  public function schoollist($param1 = "", $param2 = "") {
+  public function school($param1 = "", $param2 = "") {
       if ($param1 == 'add') {
       $this->crud_model->add_school();
       $this->session->set_flashdata('flash_message', get_phrase('data_added_successfully'));
-      redirect(site_url('admin/schoollist'), 'refresh');
+      redirect(site_url('admin/school'), 'refresh');
     }
       $page_data['page_name'] = 'school';
     $page_data['page_title'] = get_phrase('school');
@@ -103,18 +103,19 @@ class Admin extends CI_Controller {
     }
     if ($param1 == "add_school") {
       $page_data['page_name'] = 'school_add';
-      $page_data['school'] = $this->crud_model->add_school()->result_array;
+      $page_data['school'] = $this->crud_model->get_school()->result_array();
       $page_data['page_title'] = get_phrase('add_school');
     }
     if ($param1 == "edit_school") {
       $page_data['page_name'] = 'edit_school';
       $page_data['page_title'] = get_phrase('edit_school');
-      $page_data['categories'] = $this->crud_model->get_school()->result_array();
-      $page_data['category_id'] = $param2;
+      $page_data['school'] = $this->crud_model->get_school()->result_array();
+      $page_data['school_id'] = $param2;
     }
 
     $this->load->view('backend/index', $page_data);
   }
+      
 
   public function sub_categories_by_category_id($category_id = 0) {
     if ($this->session->userdata('admin_login') != true) {
@@ -142,6 +143,32 @@ class Admin extends CI_Controller {
     $page_data['categories'] = $this->crud_model->get_categories();
     $this->load->view('backend/index', $page_data);
   }
+   public function sub_school_by_school_id($school_id = 0) {
+    if ($this->session->userdata('admin_login') != true) {
+      redirect(site_url('login'), 'refresh');
+    }
+
+    $school_id = $this->input->post('$school_id');
+    redirect(site_url("admin/sub_categories/$school_id"), 'refresh');
+  }
+  public function sub_school_form($param1 = "", $param2 = "") {
+    if ($this->session->userdata('admin_login') != true) {
+      redirect(site_url('login'), 'refresh');
+    }
+
+    if ($param1 == 'add_sub_school') {
+      $page_data['page_name'] = 'sub_school_add';
+      $page_data['page_title'] = get_phrase('add_sub_school');
+    }
+    elseif ($param1 == 'edit_sub_school') {
+      $page_data['page_name'] = 'sub_school_edit';
+      $page_data['page_title'] = get_phrase('edit_sub_school');
+      $page_data['sub_category_id'] = $param2;
+    }
+    $page_data['school'] = $this->crud_model->get_school();
+    $this->load->view('backend/index', $page_data);
+  }
+
 
   public function users($param1 = "", $param2 = "") {
     if ($this->session->userdata('admin_login') != true) {

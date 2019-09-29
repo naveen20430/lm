@@ -78,20 +78,20 @@
                                          <div class="form-group row mb-3">
                                             <label class="col-md-3 col-form-label" for="linkedin_link"><?php echo get_phrase('school'); ?></label>
                                             <div class="col-md-9">
-                                                <textarea name="gender" id = "gender" class="form-control"></textarea>
+                                                <textarea name="school" id = "school" class="form-control"></textarea>
                                             </div>
                                         </div>
                                         <div class="form-group row mb-3">
                                             <label class="col-md-3 col-form-label" for="linkedin_link"><?php echo get_phrase('mobile'); ?></label>
                                             <div class="col-md-9">
-                                                <textarea name="gender" id = "gender" class="form-control"></textarea>
+                                                <textarea name="mobile" id = "mobile" class="form-control"></textarea>
                                             </div>
                                         </div>
 
                                          <div class="form-group row mb-3">
                                             <label class="col-md-3 col-form-label" for="linkedin_link"><?php echo get_phrase('address'); ?></label>
                                             <div class="col-md-9">
-                                                <textarea name="biography" id = "summernote-basic" class="form-control"></textarea>
+                                                <textarea name="address" id = "address" class="form-control"></textarea>
                                             </div>
                                         </div>
                                         <div class="form-group row mb-3">

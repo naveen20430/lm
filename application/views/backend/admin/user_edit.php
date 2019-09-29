@@ -79,6 +79,38 @@
                                                 <textarea name="biography" id = "summernote-basic" class="form-control"><?php echo $user_data['biography']; ?></textarea>
                                             </div>
                                         </div>
+
+                                        <div class="form-group row mb-3">
+                                            <label class="col-md-3 col-form-label" for="linkedin_link"><?php echo get_phrase('school'); ?></label>
+                                            <div class="col-md-9">
+                                                <textarea name="school" id = "school" class="form-control"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row mb-3">
+                                            <label class="col-md-3 col-form-label" for="linkedin_link"><?php echo get_phrase('mobile'); ?></label>
+                                            <div class="col-md-9">
+                                                <textarea name="mobile" id = "mobile" class="form-control"></textarea>
+                                            </div>
+                                        </div>
+
+                                         <div class="form-group row mb-3">
+                                            <label class="col-md-3 col-form-label" for="linkedin_link"><?php echo get_phrase('address'); ?></label>
+                                            <div class="col-md-9">
+                                                <textarea name="address" id = "address" class="form-control"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row mb-3">
+                                            <label class="col-md-3 col-form-label" for="linkedin_link"><?php echo get_phrase('Gender'); ?></label>
+                                            <div class="col-md-9">
+                                                <textarea name="gender" id = "gender" class="form-control"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row mb-3">
+                                            <label class="col-md-3 col-form-label" for="linkedin_link"><?php echo get_phrase('birthday'); ?></label>
+                                            <div class="col-md-9">
+                                               <input type="date" name="bday">
+                                            </div>
+                                        </div>
                                         <div class="form-group row mb-3">
                                             <label class="col-md-3 col-form-label" for="user_image"><?php echo get_phrase('user_image'); ?></label>
                                             <div class="col-md-9">
